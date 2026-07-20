@@ -100,8 +100,9 @@ button, input, textarea, select { font: inherit; }
   grid-template-columns: 1fr;
   gap: 0;
   align-items: center;
+  justify-items: center;
 }
-.hero-copy { max-width: 880px; }
+.hero-copy { max-width: 960px; margin: 0 auto; text-align: center; }
 .eyebrow {
   margin: 0 0 12px;
   color: var(--blue-dark);
@@ -125,11 +126,13 @@ h2 {
 }
 h3 { margin-bottom: 10px; font-size: 1.2rem; }
 .hero-text {
-  max-width: 610px;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
   color: var(--muted);
   font-size: 1.12rem;
 }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.hero-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
 .btn {
   display: inline-flex;
   align-items: center;
@@ -327,6 +330,9 @@ code {
   .container { width: min(100% - 28px, 1120px); }
   .brand img { width: 122px; }
   .hero { padding: 54px 0; }
+  .hero-copy { max-width: none; margin: 0; text-align: left; }
+  .hero-text { margin-left: 0; margin-right: 0; }
+  .hero-actions { justify-content: flex-start; }
   .section { padding: 62px 0; }
   .service-grid { grid-template-columns: 1fr; }
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
