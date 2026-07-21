@@ -389,8 +389,7 @@ code {
   height: 100%;
   object-fit: cover;
   transition: transform .5s ease;
-}
-.carousel-slide:hover img { transform: scale(1.035); }
+}.carousel-slide:hover img { transform: scale(1.035); }
 .carousel-controls {
   display: flex;
   align-items: center;
