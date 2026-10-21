@@ -3,45 +3,248 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tokyo LLC | General Services</title>
-  <meta name="description" content="Tokyo LLC provides property maintenance, cleaning, outdoor, commercial, and specialty services with reliable support for commercial properties and facilities." />
+  <title>Tokyo LLC | Commercial Property &amp; Facility Services</title>
+  <meta name="description" content="Tokyo LLC delivers professional property maintenance, commercial cleaning, outdoor care, and specialty services for businesses, facilities, and property managers." />
+  <meta name="theme-color" content="#0A1628" />
+  <link rel="icon" href="assets/logo-transparent.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tokyo LLC | Commercial Property &amp; Facility Services" />
+  <meta property="og:description" content="Dependable property maintenance, cleaning, outdoor, commercial, and specialty services." />
+  <meta property="og:image" content="assets/logo-transparent.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260721-4" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261004-1" />
 </head>
 <body>
-  <header class="site-header">
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <p class="topbar-note">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.2-7-10.4A7 7 0 0 1 19 10.6C19 15.8 12 21 12 21Z"/><circle cx="12" cy="10.5" r="2.4"/></svg>
+        Serving commercial properties across Massachusetts
+      </p>
+      <div class="topbar-links">
+        <a href="tel:+19789842264">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1.1 1A16 16 0 0 1 4 5.1 1 1 0 0 1 5 4Z"/></svg>
+          (978) 984-2264
+        </a>
+        <span class="topbar-sep" aria-hidden="true"></span>
+        <a href="mailto:contact@tokyollc.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+          contact@tokyollc.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
     <nav class="nav container" aria-label="Main navigation">
       <a class="brand" href="#home" aria-label="Tokyo LLC home">
-        <img src="assets/logo-transparent.png" alt="Tokyo LLC logo" />
+        <img src="assets/logo-transparent.png" alt="Tokyo LLC" />
       </a>
-      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#work">Our Work</a>
-        <a href="#clients">Clients</a>
-        <a href="#contact">Contact</a>
-        <a class="nav-cta" href="https://wa.me/19789842264" target="_blank" rel="noopener">Live Chat</a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#approach" class="nav-link">Approach</a>
+        <a href="#work" class="nav-link">Our Work</a>
+        <a href="#clients" class="nav-link">Clients</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <button class="btn btn-sm btn-primary nav-cta" id="chatbotLauncher" type="button" data-chat-toggle aria-haspopup="dialog" aria-expanded="false" aria-controls="chatbotPanel">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="wa-icon"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 3v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
+          <span>Live Chat</span>
+        </button>
+      </div>
+
+      <div class="nav-actions">
+        <button class="nav-chat" id="navChat" type="button" data-chat-toggle aria-label="Open AI chat" aria-haspopup="dialog" aria-expanded="false" aria-controls="chatbotPanel">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="wa-icon"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 3v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </nav>
+    <!-- AI Chat Assistant (opens from the Live Chat button) -->
+    <div class="chatbot" id="chatbot">
+      <section
+        class="chatbot-panel"
+        id="chatbotPanel"
+        role="dialog"
+        aria-label="Tokyo LLC AI Assistant"
+        aria-hidden="true"
+      >
+        <header class="chatbot-header">
+          <div class="chatbot-header-info">
+            <div class="chatbot-avatar" aria-hidden="true">
+              <span>AI</span>
+            </div>
+
+            <div>
+              <h2>Tokyo LLC Assistant</h2>
+              <p>
+                <span class="chatbot-status-dot"></span>
+                Online
+              </p>
+            </div>
+          </div>
+
+          <div class="chatbot-header-actions">
+            <button
+              class="chatbot-new"
+              id="chatbotNew"
+              type="button"
+              aria-label="Start a new conversation"
+              title="New conversation"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+            </button>
+
+            <button
+              class="chatbot-close"
+              id="chatbotClose"
+              type="button"
+              aria-label="Close assistant"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18"/>
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <div
+          class="chatbot-messages"
+          id="chatbotMessages"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+        >
+          <div class="chatbot-message chatbot-message-assistant">
+            <div class="chatbot-message-bubble">Hi! I'm the Tokyo LLC AI Assistant. How can I help you today?</div>
+          </div>
+        </div>
+
+        <div class="chatbot-typing" id="chatbotTyping" hidden>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span>Assistant is typing</span>
+        </div>
+
+        <form class="chatbot-form" id="chatbotForm">
+          <label class="chatbot-input-wrapper">
+            <span class="sr-only">Message</span>
+
+            <textarea
+              id="chatbotInput"
+              name="message"
+              rows="1"
+              maxlength="4000"
+              placeholder="Ask about our services..."
+              autocomplete="off"
+              required
+            ></textarea>
+
+            <button
+              class="chatbot-send"
+              id="chatbotSend"
+              type="submit"
+              aria-label="Send message"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4l16 8-16 8 3-8-3-8Z"/>
+                <path d="M7 12h13"/>
+              </svg>
+            </button>
+          </label>
+
+          <p class="chatbot-disclaimer">
+            AI-generated responses may not contain all company information.
+          </p>
+        </form>
+      </section>
+    </div>
   </header>
 
-  <main id="home">
-    <section class="hero">
-      <div class="container hero-grid">
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-grid-lines"></div>
+        <div class="orb orb-1" data-parallax="0.12"></div>
+        <div class="orb orb-2" data-parallax="-0.08"></div>
+        <div class="orb orb-3" data-parallax="0.06"></div>
+      </div>
+
+      <div class="container hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow">Reliable commercial services for businesses and facilities</p>
-          <h1>Professional support for clean, safe, and well-maintained properties.</h1>
-          <p class="hero-text">
-            Tokyo LLC provides dependable property maintenance, cleaning, outdoor, commercial, and specialty services with a focus on quality, organization, and customer care.
+          <p class="pill reveal" data-reveal>
+            <span class="pill-dot" aria-hidden="true"></span>
+            Now booking new commercial contracts
           </p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#contact">Request a Quote</a>
-            <a class="btn secondary" href="https://wa.me/19789842264" target="_blank" rel="noopener">Start Live Chat</a>
+
+          <h1 class="hero-title" data-split>Professional care for clean, safe, well-run properties.</h1>
+
+          <p class="hero-text reveal" data-reveal data-delay="120">
+            Tokyo LLC is a full-service partner for property maintenance, commercial cleaning,
+            outdoor care, and specialty projects &mdash; delivered with the organization,
+            consistency, and accountability your facility deserves.
+          </p>
+
+          <div class="hero-actions reveal" data-reveal data-delay="200">
+            <a class="btn btn-primary btn-lg magnetic" href="#contact">
+              Request a Quote
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="btn-arrow"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#services">Explore Services</a>
           </div>
+
+          <ul class="hero-trust reveal" data-reveal data-delay="280">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4 10-10"/></svg> Licensed &amp; insured</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4 10-10"/></svg> Flexible scheduling</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4 10-10"/></svg> One point of contact</li>
+          </ul>
+        </div>
+
+        <div class="hero-stats reveal" data-reveal data-delay="340">
+          <div class="stat">
+            <span class="stat-num" data-count="5">0</span>
+            <span class="stat-label">Core service lines</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" data-count="8" data-suffix="+">0</span>
+            <span class="stat-label">Businesses &amp; partners served</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" data-count="13" data-suffix="+">0</span>
+            <span class="stat-label">Projects in our gallery</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num stat-text">MA</span>
+            <span class="stat-label">Massachusetts coverage</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee-band" aria-label="What we handle">
+      <div class="marquee">
+        <div class="marquee-track">
+          <span class="marquee-item">Property Maintenance</span><span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">Commercial Cleaning</span><span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">Outdoor Services</span><span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">Facility Support</span><span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">Pressure Washing</span><span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">Specialty Projects</span><span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">Cleanup &amp; Hauling</span><span class="marquee-dot" aria-hidden="true"></span>
+          <span class="marquee-item">Carpet Washing</span><span class="marquee-dot" aria-hidden="true"></span>
         </div>
       </div>
     </section>
@@ -49,100 +252,231 @@
     <section class="section services" id="services">
       <div class="container">
         <div class="section-heading">
-          <p class="eyebrow">What we do</p>
-          <h2>Services Provided</h2>
-          <p>Dependable service solutions for commercial properties, facilities, and organizations.</p>
+          <p class="eyebrow reveal" data-reveal>What we do</p>
+          <h2 class="reveal" data-reveal data-delay="80">Services built around your property.</h2>
+          <p class="section-lead reveal" data-reveal data-delay="160">
+            Five service lines that cover the full life of a commercial property &mdash;
+            from routine upkeep to one-off projects that need to be handled right the first time.
+          </p>
         </div>
 
         <div class="service-grid">
-          <article class="service-card">
-            <div class="icon">01</div>
+          <article class="service-card reveal" data-reveal data-spotlight>
+            <span class="service-index">01</span>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3.5a4.5 4.5 0 0 0 5.3 6.2L9.7 20.8a2.4 2.4 0 0 1-3.4-3.4L17.4 6.3a4.5 4.5 0 0 1-1.9-2.8Z"/><path d="M7 17.5h.01"/></svg>
+            </div>
             <h3>Property Maintenance</h3>
-            <p>General repairs, preventive maintenance, light improvements, and ongoing property care.</p>
+            <p>General repairs, preventive maintenance, light improvements, and ongoing property care that keeps small issues from becoming expensive ones.</p>
+            <ul class="service-list">
+              <li>Repairs &amp; punch lists</li>
+              <li>Preventive upkeep</li>
+              <li>Light improvements</li>
+            </ul>
           </article>
 
-          <article class="service-card">
-            <div class="icon">02</div>
+          <article class="service-card reveal" data-reveal data-delay="80" data-spotlight>
+            <span class="service-index">02</span>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 2.5 1.6 3.9 3.9 1.6-3.9 1.6L10 13.5 8.4 9.6 4.5 8l3.9-1.6L10 2.5Z"/><path d="m17.5 13 1 2.5 2.5 1-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1 1-2.5Z"/><path d="M4.5 16.5 6 20"/></svg>
+            </div>
             <h3>Cleaning Services</h3>
-            <p>Commercial cleaning, office cleaning, deep cleaning, and dependable routine facility support.</p>
+            <p>Commercial cleaning, office cleaning, deep cleaning, and dependable routine facility support on a schedule that fits your operation.</p>
+            <ul class="service-list">
+              <li>Office &amp; retail cleaning</li>
+              <li>Deep &amp; post-construction</li>
+              <li>Recurring janitorial</li>
+            </ul>
           </article>
 
-          <article class="service-card">
-            <div class="icon">03</div>
+          <article class="service-card reveal" data-reveal data-delay="160" data-spotlight>
+            <span class="service-index">03</span>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 7.5 9.5h2.8L6.5 15.5h4V21h3v-5.5h4L13.7 9.5h2.8L12 2.5Z"/></svg>
+            </div>
             <h3>Outdoor Services</h3>
-            <p>Yard cleanup, pressure washing, outdoor maintenance, and exterior property support.</p>
+            <p>Yard cleanup, pressure washing, outdoor maintenance, and exterior upkeep that protects your curb appeal year-round.</p>
+            <ul class="service-list">
+              <li>Pressure washing</li>
+              <li>Grounds &amp; yard cleanup</li>
+              <li>Seasonal exterior care</li>
+            </ul>
           </article>
 
-          <article class="service-card">
-            <div class="icon">04</div>
+          <article class="service-card reveal" data-reveal data-delay="240" data-spotlight>
+            <span class="service-index">04</span>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V6l7-3 7 3v15"/><path d="M9 21v-5h6v5"/><path d="M9 10h2M13 10h2"/></svg>
+            </div>
             <h3>Commercial Services</h3>
-            <p>Office, retail, rental, and property management support for businesses and facilities.</p>
+            <p>Office, retail, rental, and property management support for businesses and facilities that need a reliable vendor they can call once.</p>
+            <ul class="service-list">
+              <li>Property management support</li>
+              <li>Turnovers &amp; make-readies</li>
+              <li>Multi-site coverage</li>
+            </ul>
           </article>
 
-          <article class="service-card wide">
-            <div class="icon">05</div>
+          <article class="service-card service-card-feature reveal" data-reveal data-delay="320" data-spotlight>
+            <span class="service-index">05</span>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.3 5.2 5.7.6-4.3 3.8 1.2 5.6L12 15.4 7.1 18.2l1.2-5.6L4 8.8l5.7-.6L12 3Z"/></svg>
+            </div>
             <h3>Specialty Services</h3>
-            <p>Project-based services, customized support, cleanup, hauling coordination, and special requests based on customer needs.</p>
+            <p>Project-based work, customized support, cleanup, hauling coordination, and the special requests that do not fit a standard scope. If you need it handled, ask &mdash; we scope it, quote it, and see it through.</p>
+            <ul class="service-list">
+              <li>Custom project scopes</li>
+              <li>Cleanout &amp; hauling coordination</li>
+              <li>One-off requests</li>
+            </ul>
+            <a class="service-link" href="#contact">Discuss a project <span aria-hidden="true">&rarr;</span></a>
           </article>
         </div>
       </div>
     </section>
 
+    <section class="section approach" id="approach">
+      <div class="container approach-grid">
+        <div class="approach-copy">
+          <p class="eyebrow reveal" data-reveal>Our approach</p>
+          <h2 class="reveal" data-reveal data-delay="80">A process that removes the guesswork.</h2>
+          <p class="section-lead reveal" data-reveal data-delay="140">
+            Every job follows the same clear path, so you always know what is happening,
+            who is on site, and what comes next.
+          </p>
+
+          <ol class="steps">
+            <li class="step reveal" data-reveal data-delay="180">
+              <span class="step-num">1</span>
+              <div>
+                <h3>Walkthrough &amp; scope</h3>
+                <p>We visit the property, understand the requirements, and document exactly what needs doing.</p>
+              </div>
+            </li>
+            <li class="step reveal" data-reveal data-delay="240">
+              <span class="step-num">2</span>
+              <div>
+                <h3>Clear written quote</h3>
+                <p>A straightforward proposal with defined scope and pricing &mdash; no vague line items, no surprises.</p>
+              </div>
+            </li>
+            <li class="step reveal" data-reveal data-delay="300">
+              <span class="step-num">3</span>
+              <div>
+                <h3>Scheduled execution</h3>
+                <p>Work is planned around your hours and operations, with a single point of contact throughout.</p>
+              </div>
+            </li>
+            <li class="step reveal" data-reveal data-delay="360">
+              <span class="step-num">4</span>
+              <div>
+                <h3>Walk-through &amp; follow-up</h3>
+                <p>We confirm the result with you and stay available for ongoing or recurring support.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <aside class="approach-panel reveal" data-reveal data-delay="200">
+          <div class="panel-card">
+            <div class="panel-media">
+              <img src="assets/services-web/service-04.webp" alt="Tokyo LLC team working at a commercial property" loading="lazy" />
+            </div>
+            <div class="panel-body">
+              <h3>Why property managers keep calling back</h3>
+              <ul class="check-list">
+                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4 10-10"/></svg> Consistent crews, consistent standards</li>
+                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4 10-10"/></svg> Clear communication before, during, after</li>
+                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4 10-10"/></svg> Multiple trades under one vendor</li>
+                <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4 10-10"/></svg> Respect for your tenants and operations</li>
+              </ul>
+              <a class="btn btn-primary btn-block" href="#contact">Start a conversation</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
     <section class="section work-gallery" id="work">
       <div class="container">
         <div class="gallery-heading">
           <div>
-            <p class="eyebrow">Our team at work</p>
-            <h2>Service in action.</h2>
+            <p class="eyebrow reveal" data-reveal>Our team at work</p>
+            <h2 class="reveal" data-reveal data-delay="80">Service in action.</h2>
           </div>
-          <p>See how Tokyo LLC supports commercial properties with careful, dependable work.</p>
+          <p class="reveal" data-reveal data-delay="140">
+            A look at recent jobs &mdash; careful, dependable work across maintenance,
+            cleaning, and outdoor projects.
+          </p>
         </div>
 
-        <div class="carousel" aria-label="Tokyo LLC service work photos">
+        <div class="carousel reveal" data-reveal data-delay="180" aria-label="Tokyo LLC service work photos">
           <div class="carousel-viewport" tabindex="0">
             <div class="carousel-track">
-              <figure class="carousel-slide"><img src="assets/services-web/service-01.webp" alt="Tokyo LLC team performing commercial service work" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-02.webp" alt="Tokyo LLC worker completing a property service task" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-03.webp" alt="Commercial property maintenance work by Tokyo LLC" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-04.webp" alt="Tokyo LLC team working at a commercial property" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-05.webp" alt="Professional facility service work in progress" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-06.webp" alt="Tokyo LLC worker providing commercial property care" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-07.webp" alt="Commercial cleaning and maintenance work" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-08.webp" alt="Tokyo LLC service team completing an on-site task" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-09.webp" alt="Professional outdoor and property service work" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-10.webp" alt="Tokyo LLC commercial service project" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-11.webp" alt="Facility maintenance service in progress" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-12.webp" alt="Tokyo LLC team caring for a commercial property" loading="lazy"></figure>
-              <figure class="carousel-slide"><img src="assets/services-web/service-13.webp" alt="Commercial specialty service work by Tokyo LLC" loading="lazy"></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-01.webp" alt="Tokyo LLC team performing commercial service work" loading="lazy"><figcaption>Commercial service work</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-02.webp" alt="Tokyo LLC worker completing a property service task" loading="lazy"><figcaption>Property service task</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-03.webp" alt="Commercial property maintenance work by Tokyo LLC" loading="lazy"><figcaption>Property maintenance</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-04.webp" alt="Tokyo LLC team working at a commercial property" loading="lazy"><figcaption>On-site team</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-05.webp" alt="Professional facility service work in progress" loading="lazy"><figcaption>Facility services</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-06.webp" alt="Tokyo LLC worker providing commercial property care" loading="lazy"><figcaption>Commercial property care</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-07.webp" alt="Commercial cleaning and maintenance work" loading="lazy"><figcaption>Cleaning &amp; maintenance</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-08.webp" alt="Tokyo LLC service team completing an on-site task" loading="lazy"><figcaption>On-site task</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-09.webp" alt="Professional outdoor and property service work" loading="lazy"><figcaption>Outdoor services</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-10.webp" alt="Tokyo LLC commercial service project" loading="lazy"><figcaption>Service project</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-11.webp" alt="Facility maintenance service in progress" loading="lazy"><figcaption>Facility maintenance</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-12.webp" alt="Tokyo LLC team caring for a commercial property" loading="lazy"><figcaption>Property care</figcaption></figure>
+              <figure class="carousel-slide"><img src="assets/services-web/service-13.webp" alt="Commercial specialty service work by Tokyo LLC" loading="lazy"><figcaption>Specialty work</figcaption></figure>
             </div>
           </div>
+
           <div class="carousel-controls">
-            <button class="carousel-arrow carousel-prev" type="button" aria-label="Show previous service photos">&larr;</button>
-            <span class="carousel-status" aria-live="polite">1 / 13</span>
-            <button class="carousel-arrow carousel-next" type="button" aria-label="Show next service photos">&rarr;</button>
+            <div class="carousel-progress" aria-hidden="true"><span></span></div>
+            <div class="carousel-buttons">
+              <span class="carousel-status" aria-live="polite">1 / 13</span>
+              <button class="carousel-arrow carousel-prev" type="button" aria-label="Show previous service photos">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              </button>
+              <button class="carousel-arrow carousel-next" type="button" aria-label="Show next service photos">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
     <section class="section clients" id="clients">
       <div class="container">
-        <div class="section-heading compact">
-          <p class="eyebrow">Trusted by local customers</p>
-          <h2>Clients & Partners</h2>
-          <p>Organizations and businesses that have trusted Tokyo LLC.</p>
-
+        <div class="section-heading">
+          <p class="eyebrow reveal" data-reveal>Trusted by local businesses</p>
+          <h2 class="reveal" data-reveal data-delay="80">Clients &amp; partners.</h2>
+          <p class="section-lead reveal" data-reveal data-delay="140">
+            Organizations and businesses that have trusted Tokyo LLC with their properties.
+          </p>
         </div>
 
         <div class="logo-grid" aria-label="Client logos">
-          <div class="client-logo"><img src="assets/client-logos/o%26m.png" alt="O&amp;M"></div>
-          <div class="client-logo"><img src="assets/client-logos/nashoba.png" alt="Nashoba"></div>
-          <div class="client-logo"><img src="assets/client-logos/medacuity.png" alt="MedAcuity"></div>
-          <div class="client-logo"><img src="assets/client-logos/homedepot.png" alt="The Home Depot"></div>
-          <div class="client-logo"><img src="assets/client-logos/folch.png" alt="Folch"></div>
-          <div class="client-logo"><img src="assets/client-logos/demaximis.png" alt="DeMaximis"></div>
-          <div class="client-logo"><img src="assets/client-logos/blueeagle.png" alt="Blue Eagle"></div>
-          <div class="client-logo"><img src="assets/client-logos/bisco.png" alt="Bisco"></div>
+          <div class="client-logo reveal" data-reveal><img src="assets/client-logos/trimmed/o%26m.png" alt="O&amp;M" loading="lazy"></div>
+          <div class="client-logo reveal" data-reveal data-delay="60"><img src="assets/client-logos/trimmed/nashoba.png" alt="Nashoba" loading="lazy"></div>
+          <div class="client-logo reveal" data-reveal data-delay="120"><img src="assets/client-logos/trimmed/medacuity.png" alt="MedAcuity" loading="lazy"></div>
+          <div class="client-logo client-logo-square reveal" data-reveal data-delay="180"><img src="assets/client-logos/trimmed/homedepot.png" alt="The Home Depot" loading="lazy"></div>
+          <div class="client-logo client-logo-square reveal" data-reveal data-delay="60"><img src="assets/client-logos/trimmed/folch.png" alt="Folch" loading="lazy"></div>
+          <div class="client-logo reveal" data-reveal data-delay="120"><img src="assets/client-logos/trimmed/demaximis.png" alt="DeMaximis" loading="lazy"></div>
+          <div class="client-logo client-logo-square reveal" data-reveal data-delay="180"><img src="assets/client-logos/trimmed/blueeagle.png" alt="Blue Eagle" loading="lazy"></div>
+          <div class="client-logo reveal" data-reveal data-delay="240"><img src="assets/client-logos/trimmed/bisco.png" alt="Bisco" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container cta-inner reveal" data-reveal>
+        <div class="cta-copy">
+          <h2>Need a dependable vendor this week?</h2>
+          <p>Tell us what the property needs &mdash; we will walk it, scope it, and get you a clear quote.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-light btn-lg magnetic" href="#contact">Request a Quote</a>
+          <a class="btn btn-outline-light btn-lg" href="tel:+19789842264">(978) 984-2264</a>
         </div>
       </div>
     </section>
@@ -150,28 +484,56 @@
     <section class="section contact" id="contact">
       <div class="container contact-grid">
         <div class="contact-copy">
-          <p class="eyebrow">Contact</p>
-          <h2>Let&apos;s talk about your next service request.</h2>
-          <p>Send a quick message and Tokyo LLC will follow up as soon as possible.</p>
+          <p class="eyebrow reveal" data-reveal>Contact</p>
+          <h2 class="reveal" data-reveal data-delay="80">Let&rsquo;s talk about your next service request.</h2>
+          <p class="section-lead reveal" data-reveal data-delay="140">
+            Send a quick message and Tokyo LLC will follow up as soon as possible.
+            Prefer to talk it through? Call or start a chat.
+          </p>
 
           <div class="contact-info">
-            <a href="tel:+19789842264">(978) 984-2264</a>
-            <a href="mailto:contact@tokyollc.com">contact@tokyollc.com</a>
-            <a href="https://wa.me/19789842264" target="_blank" rel="noopener">Live Chat on WhatsApp</a>
+            <a class="contact-card reveal" data-reveal data-delay="180" href="tel:+19789842264">
+              <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1.1 1A16 16 0 0 1 4 5.1 1 1 0 0 1 5 4Z"/></svg></span>
+              <span class="contact-text"><strong>(978) 984-2264</strong><small>Call the team directly</small></span>
+              <span class="contact-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="contact-card reveal" data-reveal data-delay="240" href="mailto:contact@tokyollc.com">
+              <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></span>
+              <span class="contact-text"><strong>contact@tokyollc.com</strong><small>Email us anytime</small></span>
+              <span class="contact-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="contact-card reveal" data-reveal data-delay="300" href="#" role="button" data-chat-open>
+              <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H8l-4 3v-5.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg></span>
+              <span class="contact-text"><strong>Live chat with our AI assistant</strong><small>Instant answers, anytime</small></span>
+              <span class="contact-arrow" aria-hidden="true">&rarr;</span>
+            </a>
           </div>
         </div>
 
-        <form class="contact-form" id="contactForm">
-          <label>
-            Name
-            <input type="text" name="name" placeholder="Your name" required />
+        <form class="contact-form reveal" data-reveal data-delay="200" id="contactForm" novalidate>
+          <div class="form-head">
+            <h3>Request a quote</h3>
+            <p>We typically reply within one business day.</p>
+          </div>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label class="field">
+              <span>Phone <em>(optional)</em></span>
+              <input type="tel" name="phone" placeholder="(978) 000-0000" />
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" placeholder="you@company.com" required />
           </label>
-          <label>
-            Email
-            <input type="email" name="email" placeholder="you@example.com" required />
-          </label>
-          <label>
-            Service Needed
+
+          <label class="field">
+            <span>Service needed</span>
             <select name="service" required>
               <option value="">Select a service</option>
               <option>Property Maintenance</option>
@@ -181,22 +543,84 @@
               <option>Specialty Services</option>
             </select>
           </label>
-          <label>
-            Message
-            <textarea name="message" rows="5" placeholder="Tell us what you need..." required></textarea>
+
+          <label class="field">
+            <span>Message</span>
+            <textarea name="message" rows="5" placeholder="Tell us about the property and what you need..." required></textarea>
           </label>
-          <button class="btn primary full" type="submit">Send Message</button>
+
+          <button class="btn btn-primary btn-lg btn-block" type="submit">
+            Send Message
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="btn-arrow"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+          </button>
+          <p class="form-note" id="formNote" role="status"></p>
         </form>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer-content">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <p class="footer-wordmark">Tokyo LLC</p>
+        <p>Professional property maintenance, cleaning, outdoor, commercial, and specialty services for businesses and facilities.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#services">Property Maintenance</a>
+        <a href="#services">Cleaning Services</a>
+        <a href="#services">Outdoor Services</a>
+        <a href="#services">Commercial Services</a>
+        <a href="#services">Specialty Services</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#approach">Our Approach</a>
+        <a href="#work">Our Work</a>
+        <a href="#clients">Clients</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <a href="tel:+19789842264">(978) 984-2264</a>
+        <a href="mailto:contact@tokyollc.com">contact@tokyollc.com</a>
+        <a href="#" role="button" data-chat-open>AI Live Chat</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
       <p>&copy; <span id="year"></span> Tokyo LLC. All rights reserved.</p>
+      <p class="footer-meta">Commercial property &amp; facility services &middot; Massachusetts</p>
+    </div>
+
+    <div class="footer-credit">
+      <div class="container credit-inner">
+        <div class="credit-block">
+          <span class="credit-label">Developed by</span>
+          <img class="credit-logo" src="assets/logo_koppel-light.png" alt="Koppel" width="700" height="230" loading="lazy" />
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script src="script.js?v=20260721-2"></script>
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+    <button class="lightbox-close" type="button" aria-label="Close viewer">&times;</button>
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </button>
+    <figure class="lightbox-figure"><img alt="" /></figure>
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+
+  <script src="script.js?v=20261004-2"></script>
 </body>
 </html>

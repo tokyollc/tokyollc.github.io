@@ -1,0 +1,10 @@
+{
+  "name": "tokyo-llc-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tokyo LLC static website (frontend)",
+  "scripts": {
+    "dev": "npx --yes live-server . --port=5500 --no-css-inject --watch=index.html,styles.css,script.js,assets",
+    "start": "npm run dev"
+  }
+}
