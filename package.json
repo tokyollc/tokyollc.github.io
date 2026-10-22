@@ -5,6 +5,10 @@
   "description": "Tokyo LLC static website (frontend)",
   "scripts": {
     "dev": "npx --yes live-server . --port=5500 --no-css-inject --watch=index.html,styles.css,script.js,assets",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.136.3"
   }
 }

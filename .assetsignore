@@ -1,0 +1,11 @@
+# Files in the repo root that must NOT be published as part of the website
+backend
+node_modules
+.git
+.wrangler
+.vscode
+package.json
+package-lock.json
+wrangler.jsonc
+.assetsignore
+.gitignore

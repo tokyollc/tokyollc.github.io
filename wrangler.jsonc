@@ -1,0 +1,15 @@
+/**
+ * Frontend Worker: serves the static website (index.html, styles.css,
+ * script.js, assets/) on www.tokyollc.com and tokyollc.com.
+ * The backend lives in backend/ as its own Worker (api-tokyollc).
+ * Files listed in .assetsignore are not published.
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tokyollc",
+  "compatibility_date": "2026-10-19",
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page"
+  }
+}
