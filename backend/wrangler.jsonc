@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "backend",
+	"name": "tokyollc",
 	"main": "src/index.ts",
 	"compatibility_date": "2026-09-21",
 	"observability": {

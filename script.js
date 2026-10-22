@@ -486,12 +486,14 @@
     const chatbotTyping = document.getElementById('chatbotTyping');
 
     /*
-    * Local development endpoint.
+    * Chat backend endpoint.
     *
-    * This will be changed to the production Worker URL
-    * after the backend is deployed.
+    * Uses the local Worker (wrangler dev) when the site is opened on
+    * localhost, and the production Worker on api.tokyollc.com otherwise.
     */
-    const CHAT_API_URL = 'http://localhost:8787/api/chat';
+    const CHAT_API_URL = ['localhost', '127.0.0.1'].includes(location.hostname)
+        ? 'http://localhost:8787/api/chat'
+        : 'https://api.tokyollc.com/api/chat';
 
     let chatSessionId = null;
     let chatSending = false;
