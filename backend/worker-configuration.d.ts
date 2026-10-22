@@ -5,11 +5,13 @@ interface __BaseEnv_Env {
 	AI: Ai;
 	CHAT_SESSIONS: DurableObjectNamespace<import("./src/index").ChatSession>;
 	ANALYTICS: DurableObjectNamespace<import("./src/index").Analytics>;
+	RATE_LIMITER: DurableObjectNamespace<import("./src/index").RateLimiter>;
+	TURNSTILE_SECRET_KEY: string;
 }
 declare namespace Cloudflare {
 	interface GlobalProps {
 		mainModule: typeof import("./src/index");
-		durableNamespaces: "ChatSession" | "Analytics";
+		durableNamespaces: "ChatSession" | "Analytics" | "RateLimiter";
 	}
 	interface Env extends __BaseEnv_Env {}
 }

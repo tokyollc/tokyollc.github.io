@@ -1,11 +1,52 @@
 
 import { ChatSession } from "./chat-session";
 import { Analytics } from "./analytics";
+import { RateLimiter } from "./rate-limiter";
+
+// Maximum chat messages one visitor (IP address) can send per day (UTC).
+const DAILY_MESSAGES_PER_IP = 30;
 
 interface ChatRequest {
   message?: string;
   sessionId?: string;
   action?: "chat" | "clear";
+  turnstileToken?: string;
+}
+
+/**
+ * Checks a Cloudflare Turnstile token with Cloudflare.
+ * Tokens are single-use and expire after 5 minutes.
+ */
+async function verifyTurnstile(
+  token: unknown,
+  ip: string | null,
+  secret: string | undefined
+): Promise<boolean> {
+  if (!secret) {
+    console.error("TURNSTILE_SECRET_KEY is not set.");
+    return false;
+  }
+
+  if (typeof token !== "string" || !token || token.length > 2048) {
+    return false;
+  }
+
+  const form = new FormData();
+  form.append("secret", secret);
+  form.append("response", token);
+  if (ip) form.append("remoteip", ip);
+
+  try {
+    const result = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      { method: "POST", body: form }
+    );
+    const outcome = (await result.json()) as { success?: boolean };
+    return outcome.success === true;
+  } catch (error) {
+    console.error("Turnstile verification error:", error);
+    return false;
+  }
 }
 
 // Only these sites may call the chat API from a browser.
@@ -40,7 +81,7 @@ function jsonResponse(
   });
 }
 
-export { ChatSession, Analytics };
+export { ChatSession, Analytics, RateLimiter };
 
 export default {
   async fetch(request, env): Promise<Response> {
@@ -140,6 +181,31 @@ async function handleRequest(request: Request, env: Env): Promise<Response> {
       { error: "Message is too long. Maximum is 4000 characters." },
       400
     );
+  }
+
+  if (body.action !== "clear") {
+    const ip = request.headers.get("CF-Connecting-IP");
+
+    // Bot protection: every chat message needs a valid Turnstile token.
+    if (!(await verifyTurnstile(body.turnstileToken, ip, env.TURNSTILE_SECRET_KEY))) {
+      return jsonResponse(
+        { error: "Verification failed. Please refresh the page and try again." },
+        403
+      );
+    }
+
+    // Per-visitor daily limit, so one visitor or bot can't use up the AI quota.
+    const limiter = env.RATE_LIMITER.get(env.RATE_LIMITER.idFromName(ip ?? "unknown"));
+
+    if (!(await limiter.consume(DAILY_MESSAGES_PER_IP))) {
+      return jsonResponse(
+        {
+          error:
+            "You've reached today's chat limit. Please contact Tokyo LLC at 978-984-2264 or contact@tokyollc.com.",
+        },
+        429
+      );
+    }
   }
 
   // Reuse the supplied session ID, or create a new anonymous session.

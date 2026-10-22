@@ -166,6 +166,9 @@
             </button>
           </label>
 
+          <!-- Cloudflare Turnstile: only shows if a visitor needs to confirm they're human -->
+          <div class="chatbot-turnstile" id="chatbotTurnstile"></div>
+
           <p class="chatbot-disclaimer">
             AI-generated responses may not contain all company information.
           </p>
@@ -621,6 +624,7 @@
     </button>
   </div>
 
-  <script src="script.js?v=20261004-2"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  <script src="script.js?v=20261022-1"></script>
 </body>
 </html>

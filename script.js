@@ -491,9 +491,63 @@
     * Uses the local Worker (wrangler dev) when the site is opened on
     * localhost, and the production Worker on api.tokyollc.com otherwise.
     */
-    const CHAT_API_URL = ['localhost', '127.0.0.1'].includes(location.hostname)
+    const IS_LOCAL = ['localhost', '127.0.0.1'].includes(location.hostname);
+
+    const CHAT_API_URL = IS_LOCAL
         ? 'http://localhost:8787/chat'
         : 'https://api.tokyollc.com/chat';
+
+    /*
+    * Cloudflare Turnstile (bot protection for the chat).
+    *
+    * On localhost, Cloudflare's official test key is used; it always passes.
+    */
+    const TURNSTILE_SITE_KEY = IS_LOCAL
+        ? '1x00000000000000000000AA'
+        : '0x4AAAAAAFhF2Vy4w1vzaBXI';
+
+    let turnstileWidgetId = null;
+    let turnstilePending = null;
+
+    // Runs the Turnstile check and resolves with a one-time token.
+    const getTurnstileToken = () => new Promise((resolve, reject) => {
+      if (!window.turnstile) {
+        reject(new Error('Turnstile is not loaded.'));
+        return;
+      }
+
+      const timeout = setTimeout(() => {
+        turnstilePending = null;
+        reject(new Error('Turnstile timed out.'));
+      }, 120000);
+
+      turnstilePending = {
+        resolve: (token) => { clearTimeout(timeout); resolve(token); },
+        reject: (error) => { clearTimeout(timeout); reject(error); }
+      };
+
+      const settle = (method, value) => {
+        const pending = turnstilePending;
+        turnstilePending = null;
+        pending?.[method](value);
+      };
+
+      if (turnstileWidgetId === null) {
+        turnstileWidgetId = window.turnstile.render('#chatbotTurnstile', {
+          sitekey: TURNSTILE_SITE_KEY,
+          execution: 'execute',
+          appearance: 'interaction-only',
+          callback: (token) => settle('resolve', token),
+          'error-callback': () => settle('reject', new Error('Turnstile check failed.')),
+          'expired-callback': () => settle('reject', new Error('Turnstile token expired.'))
+        });
+      } else {
+        // Tokens are single-use, so reset before getting a new one.
+        window.turnstile.reset(turnstileWidgetId);
+      }
+
+      window.turnstile.execute(turnstileWidgetId);
+    });
 
     let chatSessionId = null;
     let chatSending = false;
@@ -858,6 +912,8 @@
       setChatTyping(true);
 
       try {
+        const turnstileToken = await getTurnstileToken();
+
         const response = await fetch(CHAT_API_URL, {
           method: 'POST',
           headers: {
@@ -865,7 +921,8 @@
           },
           body: JSON.stringify({
             message,
-            sessionId: chatSessionId
+            sessionId: chatSessionId,
+            turnstileToken
           })
         });
 

@@ -1978,6 +1978,13 @@ body.no-scroll { overflow: hidden; }
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+.chatbot-turnstile {
+  display: flex;
+  justify-content: center;
+}
+.chatbot-turnstile:not(:empty) {
+  margin-top: 8px;
+}
 .chatbot-disclaimer {
   margin: 8px 2px 0;
   color: var(--muted);
