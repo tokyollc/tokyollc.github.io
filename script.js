@@ -492,8 +492,8 @@
     * localhost, and the production Worker on api.tokyollc.com otherwise.
     */
     const CHAT_API_URL = ['localhost', '127.0.0.1'].includes(location.hostname)
-        ? 'http://localhost:8787/api/chat'
-        : 'https://api.tokyollc.com/api/chat';
+        ? 'http://localhost:8787/chat'
+        : 'https://api.tokyollc.com/chat';
 
     let chatSessionId = null;
     let chatSending = false;

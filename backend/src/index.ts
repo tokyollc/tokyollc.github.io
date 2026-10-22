@@ -58,7 +58,16 @@ export default {
   },
 } satisfies ExportedHandler<Env>;
 
+// The chat endpoint. "/api/chat" is the old address, kept temporarily so
+// the previous website version keeps working during deploys; remove later.
+const CHAT_PATHS = ["/chat", "/api/chat"];
+
 async function handleRequest(request: Request, env: Env): Promise<Response> {
+  const { pathname } = new URL(request.url);
+
+  if (!CHAT_PATHS.includes(pathname)) {
+    return jsonResponse({ error: "Not found." }, 404);
+  }
 
   if (request.method !== "POST") {
     return jsonResponse(
