@@ -483,6 +483,30 @@
     }
   });
 
+  // Phone mask: formats digits as (978) 555-0123 while typing.
+  const formatUSPhone = (value) => {
+    let digits = value.replace(/\D/g, '');
+    if (digits.length > 10 && digits.startsWith('1')) digits = digits.slice(1); // drop +1
+    digits = digits.slice(0, 10);
+
+    if (digits.length === 0) return '';
+    if (digits.length < 4) return `(${digits}`;
+    if (digits.length < 7) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  };
+
+  const phoneInput = contactForm?.querySelector('input[name="phone"]');
+
+  phoneInput?.addEventListener('input', (event) => {
+    // Let Backspace delete through the "(", ")", " " and "-" characters.
+    if (event.inputType?.startsWith('delete')) return;
+    phoneInput.value = formatUSPhone(phoneInput.value);
+  });
+
+  phoneInput?.addEventListener('blur', () => {
+    phoneInput.value = formatUSPhone(phoneInput.value);
+  });
+
   $$('.field input, .field select, .field textarea').forEach((control) => {
     control.addEventListener('input', () => {
       control.closest('.field')?.classList.remove('invalid');

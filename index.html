@@ -526,7 +526,8 @@
             </label>
             <label class="field">
               <span>Phone <em>(optional)</em></span>
-              <input type="tel" name="phone" placeholder="(978) 000-0000" />
+              <input type="tel" name="phone" placeholder="(978) 000-0000" inputmode="tel" autocomplete="tel-national"
+                     pattern="\(\d{3}\) \d{3}-\d{4}" title="10-digit US phone number, e.g. (978) 555-0123" />
             </label>
           </div>
 
@@ -629,6 +630,6 @@
   </div>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
-  <script src="script.js?v=20261024-1"></script>
+  <script src="script.js?v=20261024-2"></script>
 </body>
 </html>
