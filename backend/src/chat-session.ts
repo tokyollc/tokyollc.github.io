@@ -373,6 +373,9 @@ export class ChatSession extends DurableObject<Env> {
           ],
           max_tokens: 700,
           temperature: 0.6,
+          // Less internal "thinking" before answering: faster replies, and
+          // fewer empty responses from thinking using up max_tokens.
+          reasoning_effort: "low",
         }
       ) as AIChatCompletion ;
 
