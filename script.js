@@ -414,7 +414,16 @@
   const contactForm = document.getElementById('contactForm');
   const formNote = document.getElementById('formNote');
 
-  contactForm?.addEventListener('submit', (event) => {
+  // Google Apps Script web app that emails the form to Tokyo LLC.
+  const CONTACT_FORM_URL = 'https://script.google.com/macros/s/AKfycbz7EI35dMA0j-GMa369Vgfhup1xRCPuaBq37KgXY_TVJpRxOso6u4nh17vcwljE6iHcNA/exec';
+
+  const setFormNote = (text, isError = false) => {
+    if (!formNote) return;
+    formNote.textContent = text;
+    formNote.classList.toggle('error', isError);
+  };
+
+  contactForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const fields = $$('.field', contactForm);
@@ -439,28 +448,39 @@
       return;
     }
 
-    const data = new FormData(contactForm);
-    const name = data.get('name');
-    const phone = data.get('phone');
-    const subject = encodeURIComponent(`Service request from ${name}`);
-    const body = encodeURIComponent(
-      [
-        `Name: ${name}`,
-        `Email: ${data.get('email')}`,
-        phone ? `Phone: ${phone}` : null,
-        `Service Needed: ${data.get('service')}`,
-        '',
-        'Message:',
-        data.get('message')
-      ].filter(Boolean).join('\n')
-    );
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    if (submitBtn?.disabled) return;
 
-    if (formNote) {
-      formNote.classList.remove('error');
-      formNote.textContent = 'Opening your email app with the message ready to send...';
+    if (submitBtn) submitBtn.disabled = true;
+    setFormNote('Sending...');
+
+    try {
+      // Plain form encoding, no custom headers: accepted by Apps Script
+      // from other websites without a CORS preflight.
+      const response = await fetch(CONTACT_FORM_URL, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(contactForm))
+      });
+      const result = await response.json();
+
+      if (!result.ok) {
+        throw new Error(result.error || 'failed');
+      }
+
+      contactForm.reset();
+      setFormNote('Thanks! Your request was sent. We typically reply within one business day.');
+    } catch (error) {
+      console.error('Contact form failed:', error);
+
+      setFormNote(
+        error.message === 'limit'
+          ? 'You have already sent a few requests. Please call us at (978) 984-2264 or email contact@tokyollc.com.'
+          : 'Sorry, your message could not be sent. Please call (978) 984-2264 or email contact@tokyollc.com.',
+        true
+      );
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
-
-    window.location.href = `mailto:contact@tokyollc.com?subject=${subject}&body=${body}`;
   });
 
   $$('.field input, .field select, .field textarea').forEach((control) => {
